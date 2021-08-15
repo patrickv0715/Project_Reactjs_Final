@@ -1,3 +1,13 @@
 main {
   min-height: 80vh;
 }
+
+h3 {
+  /* price h3 */
+  padding: 1rem 0;
+}
+
+.rating span {
+  /* star spacing */
+  margin: 0.1rem;
+}
