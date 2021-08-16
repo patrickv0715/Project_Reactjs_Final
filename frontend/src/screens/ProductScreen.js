@@ -11,10 +11,10 @@ const ProductScreen = ({match}) => {
         <>
         <Link className='btn btn-dark my-3' to='/'>GO BACK</Link>
         <Row>
-            <Col md={6}>
+            <Col md={12} lg={6}>
                 <Image src={product.image} alt={product.name} fluid/>
             </Col>
-            <Col md={3}>
+            <Col md={12} lg={3}>
                 <ListGroup variant=''>
                     <ListGroup.Item>
                         <h2>{product.name}</h2>
@@ -32,7 +32,7 @@ const ProductScreen = ({match}) => {
                     </ListGroup.Item>
                 </ListGroup>
             </Col>
-            <Col md={3}>
+            <Col md={12} lg={3}>
                 <Card>
                     <ListGroup variant='fluse'>
                         <ListGroup.Item>
