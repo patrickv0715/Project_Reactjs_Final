@@ -13,7 +13,7 @@ const orderSchema = mongoose.Schema({
             image:{type:String,required:true},
             price:{type:Number,required:true},
             product:{
-                type:mongoos.Schema.Types.ObjectId,
+                type:mongoose.Schema.Types.ObjectId,
                 required:true,
                 ref:'Product'
             },
@@ -53,7 +53,7 @@ const orderSchema = mongoose.Schema({
     isPaid:{
       type:Boolean,
       required:true,
-      default:flase
+      default:false
     },
     paidAt:{
       type:Date,
