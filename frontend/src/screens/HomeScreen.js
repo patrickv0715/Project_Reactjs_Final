@@ -1,31 +1,48 @@
 import { Col, Row } from 'react-bootstrap'
 import Product from '../components/Product'
-import { useState,useEffect } from 'react'
-import axios from 'axios'
+import { useEffect } from 'react'
+import {useDispatch,useSelector} from 'react-redux'
+import { listProducts } from '../shit/actions/productActions'
 
+import { bindActionCreators } from 'redux'
+import {actionCreators} from '../state/index'
 
 const HomeScreen = () => {
-    const [products,setProducts] = useState([])
+    const dispatch=useDispatch()
+
+    const {products}=useSelector((state)=>state.productList)
+ 
 
     useEffect(()=>{
-        const fetchProducts= async()=>{
-            const res=await axios.get('/api/products')
-            const data=res.data
-            // alternatively you can destructure so const {data} = await.get('/api/products')
-            setProducts(data)
-        }
-        fetchProducts()
-    },[])
+        console.log("USED EFFECT")
+        dispatch(listProducts())
+        
+    },[dispatch])
+
+    // const products=useSelector((state)=>state.productList)
+    // const dispatch=useDispatch()
+
+    // const {getProductList}=bindActionCreators(actionCreators,dispatch)
+    
+    // useEffect(()=>{
+    //     console.log('getting product list')
+    //     getProductList()
+      
+    // },[dispatch])
     return (
         <>
             <h1>Latest Products</h1>  
             <Row>
-                {products.map((product)=>(
-                    <Col key={product._id} sm={12} md={6} lg={4}>
-                    <Product product={product}/>
+                {products?products.map((product)=>(
+                    <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                        <Product product={product}/>
                     </Col>
-                ))}
+                ))
+                :<h2>ERROR</h2>
+                }
             </Row>
+
+
         </>
     )
 }
