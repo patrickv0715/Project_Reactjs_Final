@@ -2,10 +2,10 @@ import { Col, Row } from 'react-bootstrap'
 import Product from '../components/Product'
 import { useEffect } from 'react'
 import {useDispatch,useSelector} from 'react-redux'
-import { listProducts } from '../shit/actions/productActions'
+import { listProducts } from '../state/actions/productActions'
 
-import { bindActionCreators } from 'redux'
-import {actionCreators} from '../state/index'
+// import { bindActionCreators } from 'redux'
+// import {actionCreators} from '../state/index'
 
 const HomeScreen = () => {
     const dispatch=useDispatch()
