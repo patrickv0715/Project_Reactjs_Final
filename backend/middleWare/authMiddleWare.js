@@ -6,7 +6,7 @@ const protect = asyncHandler(async(req,res,next)=>{
     let token
 
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
-        console.log(req.headers.authorization)
+        // console.log(req.headers.authorization)
         try{
             token=req.headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token,process.env.JWT_SECRET)
@@ -18,11 +18,9 @@ const protect = asyncHandler(async(req,res,next)=>{
             res.status(401)
             throw new Error('Not Authorized, token failed')
         }
-        // console.log('token found')
     }
 
     if(!token){
-        console.log('sdfhsdfl')
         res.status(401)
         throw new Error('Not authorized, no token')
     }
