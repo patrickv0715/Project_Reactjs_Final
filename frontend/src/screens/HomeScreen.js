@@ -15,7 +15,7 @@ const HomeScreen = () => {
  
 
     useEffect(()=>{
-        console.log("USED EFFECT")
+        // console.log("USED EFFECT")
         dispatch(listProducts())
         
     },[dispatch])
