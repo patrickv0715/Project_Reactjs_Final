@@ -2,8 +2,8 @@ import React,{useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { Link } from 'react-router-dom'
-import {Row,Col,ListGroup,Image,Form,Button,Card} from 'react-bootstrap'
-import { addToCart } from '../state/actions/cartActions'
+import {Row,Col,ListGroup,Image,Form,Button,Card, ListGroupItem} from 'react-bootstrap'
+import { addToCart, removeFromCart } from '../state/actions/cartActions'
 
 const CartScreen = ({match,location,history}) => {
     const productId = match.params.id
@@ -18,7 +18,12 @@ const CartScreen = ({match,location,history}) => {
     },[dispatch,productId,qty])
 
     const removeFromCartHandler=(id)=>{
+        // console.log(id)
+        dispatch(removeFromCart(id))
+    }
 
+    const checkoutHandler=()=>{
+        history.push('/login?redirect=shipping')
     }
     return (
         <Row>
@@ -45,6 +50,7 @@ const CartScreen = ({match,location,history}) => {
                                                 onChange={(e)=>dispatch(addToCart(item.product,Number(e.target.value)))}
                                             >
                                             {[...Array(item.countInStock).keys()].map(x=>(<option key={x+1} value={x+1}>{x+1}</option>))}
+                               
                                         </Form.Control>
                                     </Col>
                                     <Col md={2}>
@@ -58,8 +64,20 @@ const CartScreen = ({match,location,history}) => {
 
                     </ListGroup>)}
             </Col>
-            <Col md={2}>
-
+            <Col md={4}>
+                <Card>
+                    <ListGroup variant='flush'>
+                        <ListGroup.Item>
+                            <h2>Subtotal ({cartItems.reduce((itemTotal,item)=>itemTotal+item.qty,0)}) items</h2>
+                            ${cartItems.reduce((priceTotal,item)=>priceTotal+item.price*item.qty,0).toFixed(2)}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <Button type='button' className='btn-block' disabled={cartItems.length===0} onClick={checkoutHandler}>
+                                Proceed to checkout
+                            </Button>
+                        </ListGroup.Item>
+                    </ListGroup>
+                </Card>
             </Col>
         </Row>
     )
