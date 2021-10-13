@@ -25,6 +25,7 @@ app.get('/api',(req,res)=>{
 //Do this if url=/api/products
 app.use('/api/products',productRoutes)
 
+//Do this if url=/api/products
 app.use('/api/users',userRoutes)
 
 //ERROR HANDLERS

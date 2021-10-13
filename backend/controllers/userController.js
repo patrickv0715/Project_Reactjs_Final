@@ -28,7 +28,6 @@ const authUser = asyncHandler(async(req,res) => {
 // @desc        Get user profile
 // @route       GET /api/users/profile
 // @access      Private
-
 const getUserProfile = asyncHandler(async(req,res) => {
     res.send('SUCCESS')
 })
