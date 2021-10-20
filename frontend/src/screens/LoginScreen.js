@@ -19,7 +19,6 @@ const LoginScreen = ({location,history,match}) => {
         e.preventDefault()
         dispatch(login(email,password))
     }
-    console.log(match)
     useEffect(()=>{
         if(userInfo){
             history.push(redirect)
