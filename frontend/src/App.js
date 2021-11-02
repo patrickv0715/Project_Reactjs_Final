@@ -7,6 +7,7 @@ import ProductScreen from './screens/ProductScreen'
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen"
 import RegisterScreen from './screens/RegisterScreen'
+import ProfileScreen from "./screens/ProfileScreen";
 function App() {
   return (
     <Router>
@@ -19,7 +20,7 @@ function App() {
           <Route path='/product/:id' component={ProductScreen}/>
           {/* ? in path indicates that it is optional */}
           <Route path='/cart/:id?' component={CartScreen}/> 
-
+          <Route path='/profile' component={ProfileScreen}/>
         </Container>
       </main>
       <Footer/>
