@@ -8,6 +8,7 @@ import connectDB from './config/db.js'
 import colors from 'colors'
 import productRoutes from './routes/productRoutes.js' 
 import userRoutes from './routes/userRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
 //Error Handler
 import {notFound,errorHandler} from './middleWare/errorMiddleWare.js'
 
@@ -29,6 +30,9 @@ app.use('/api/products',productRoutes)
 
 //Do this if url=/api/products
 app.use('/api/users',userRoutes)
+
+//Do this if url=/api/order
+app.use('/api/orders',orderRoutes)
 
 //ERROR HANDLERS
 app.use(errorHandler)
