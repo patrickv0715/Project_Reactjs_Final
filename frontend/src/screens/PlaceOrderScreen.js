@@ -5,7 +5,7 @@ import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { Link } from 'react-router-dom'
 import { createOrder } from '../state/actions/orderActions'
-
+import {ORDER_CREATE_RESET} from '../state/constants/orderConstants'
 const PlaceOrderScreen = ({history}) => {
     const dispatch=useDispatch()
     const cart=useSelector(state=>state.cart)
@@ -20,7 +20,6 @@ const PlaceOrderScreen = ({history}) => {
     cart.taxPrice=addDecimals(Number((.15*cart.itemsPrice).toFixed(2)))
     cart.totalPrice=Number(cart.itemsPrice)+Number(cart.shippingPrice)+Number(cart.taxPrice)
 
-    
     const placeOrderHandler = () => {
     dispatch(
       createOrder({
@@ -37,6 +36,7 @@ const PlaceOrderScreen = ({history}) => {
     useEffect(()=>{
         if(success){
             history.push(`/order/${order._id}`)
+            dispatch({ type: ORDER_CREATE_RESET })
             // eslint-disable-next-line
         }
     },[history, success])
@@ -120,7 +120,7 @@ const PlaceOrderScreen = ({history}) => {
                                 {error&&<Message variant='danger'>{error}</Message>}
                                 </ListGroup.Item>
                             <ListGroup.Item>
-                                <Button type='buttong' className='btn-block' disable={cart.cartItems===0} onClick={placeOrderHandler}>
+                                <Button type='button' className='btn-block' disable={cart.cartItems===0?'true':'false'} onClick={placeOrderHandler}>
                                     Proceed to Checkout
                                 </Button>
                             </ListGroup.Item>
